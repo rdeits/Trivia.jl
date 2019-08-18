@@ -1,8 +1,22 @@
+# This file includes functions for interactively loading and presenting a round of trivia
+# questions
+
+"""
+Display the given text and then wait for the user to type something and press <enter>
+
+Returns the text entered by the user.
+"""
 function prompt(text::AbstractString)
     print(text)
     readline()
 end
 
+"""
+Present a single question, including its possible answers and its correct answer.
+
+If `interactive=true`, then this function will pause before displaying the possible
+answers and before displaying the correct answer.
+"""
 function present(q::Question, interactive=false)
     answers = vcat(q.incorrect_answers, q.correct_answer)
     shuffle!(answers)
@@ -19,6 +33,11 @@ function present(q::Question, interactive=false)
     println("Answer: $(q.correct_answer)")
 end
 
+"""
+Create and play an entire round of trivia questions. This function will prompt
+the user for the desired number and category of questions and then present each
+question individually.
+"""
 function play_round(token=Token())
     num_questions = tryparse(Int, prompt("How many questions? [6]: "))
     if num_questions === nothing

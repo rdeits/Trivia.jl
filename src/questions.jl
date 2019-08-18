@@ -1,3 +1,6 @@
+"""
+A struct holding a question, its possible answers, and some metadata about its category and difficulty.
+"""
 struct Question
     question::String
     difficulty::Symbol
@@ -7,6 +10,9 @@ struct Question
     qtype::Symbol
 end
 
+"""
+Construct a `Question` from a dictionary of JSON data, as returned by the opentdb.com server.
+"""
 function Question(json::AbstractDict)
     Question(String(base64decode(json["question"])),
         Symbol(String(base64decode(json["difficulty"]))),
@@ -16,15 +22,26 @@ function Question(json::AbstractDict)
         Symbol(String(base64decode(json["type"]))))
 end
 
-
+"""
+Request a list of categories from the opentdb.com server. Returns a dictionary mapping category IDs
+to category names.
+"""
 function request_categories()
     url = "https://opentdb.com/api_category.php"
     r = check_http_response(
         HTTP.request("GET", url))
     data = JSON.parse(String(r.body))["trivia_categories"]
-    Dict(entry["id"] => entry["name"] for entry in data)
+    Dict{Int, String}(entry["id"] => entry["name"] for entry in data)
 end
 
+"""
+Request a list of questions from the server. 
+
+* `amount [10]`: number of questions
+* `answer_type [nothing]`: type of question, can be `:multiple` or `:boolean` (for True-False) or `nothing` (for any type)
+* `category [nothing]`: question category, can be an integer or `nothing` (for any category). See `request_categories`
+* `difficulty [nothing]`: desired difficulty, can be `:easy`, `:medium`, `:hard`, or `nothing` (for any difficulty)
+"""
 function request_questions(t::Token; amount::Union{Integer, Nothing}=10,
         answer_type::Union{Symbol, Nothing}=:multiple,
         category::Union{Integer, Nothing}=nothing,
