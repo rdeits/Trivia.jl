@@ -1,0 +1,10 @@
+name = "Trivia"
+uuid = "ffe9b266-c1e1-11e9-1be8-8de16f5aabb1"
+authors = ["Robin Deits <robin.deits@gmail.com>"]
+version = "0.0.1"
+
+[deps]
+Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
