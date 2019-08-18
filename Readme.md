@@ -73,4 +73,4 @@ If you're new to Julia, this section will help explain what all of the various f
 * `Project.toml`: This is the file used by the Julia package manager to describe this package and the packages it depends on
 * `Readme.md`: The file you are looking at right now
 
-If you want to see some examples of usage, check out the `test` folder; if you want to start changing the code check out the `src` folder.
+If you want to see some examples of usage, check out the `test` folder; if you want to start changing the code, check out the `src` folder.
