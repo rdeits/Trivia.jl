@@ -6,9 +6,13 @@ using Trivia
         t1 = Trivia.get_or_request_token()
         t2 = Trivia.get_or_request_token()
         @test t1.value == t2.value
+        t4 = Trivia.Token()
+        @test t4.value == t1.value
 
         t3 = Trivia.request_token()
         @test t1.value != t3.value
+
+        Trivia.reset!(t3)
     end
 
     @testset "categories" begin
