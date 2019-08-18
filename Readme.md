@@ -9,7 +9,7 @@ This package provides a very simple interface to the [Open Trivia Database](http
 
 ### Getting Julia
 
-If you don't have Julia installed, you will need to download it from <https://julialang.org/downloads/>. The current release is Julia v1.1.1, but any v1.x.y should be fine. 
+If you don't have Julia installed, you will need to download it from <https://julialang.org/downloads/>. This package was written using Julia v1.1.1, but any v1.x.y version should be fine. 
 
 ### Installing this package
 
