@@ -24,12 +24,14 @@ function play_round(token=Token())
     if num_questions === nothing
         num_questions = 6
     end
+    println("Loading categories from opentdb.com...")
     categories = Trivia.request_categories()
     println("\nCategories:")
     for (id, name) in sort(categories)
         println(id, ": ", name)
     end
     category = tryparse(Int, prompt("Category ID? [leave empty for grab bag]: "))
+    println("Requesting questions from opentdb.com...")
     questions = request_questions(token, category=category, amount=num_questions)
 
     prompt("Press <enter> to start the round!")
